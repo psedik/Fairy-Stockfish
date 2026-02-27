@@ -54,8 +54,14 @@ Task(subagent_type="general-purpose", model="haiku", prompt="...")
 - When stuck, ask clearly
 - Focus on Crazyhouse strength first
 
+## Current State
+- CLAUDE.md and notes/architecture.md added and pushed to psedik/Fairy-Stockfish
+- Analyzed variant dispatch — Crazyhouse is NOT isolated, runtime flag-based
+- Decided NOT to separate Crazyhouse (2-5% gain, too much effort)
+- Real bottlenecks: NNUE pockets, drop move generation, larger search tree
+
 ## Next Steps
-1. Explore src/ structure
-2. Build from source
-3. Test Crazyhouse play
-4. Identify optimization opportunities
+1. Build from source: `cd src && make build ARCH=x86-64-modern COMP=clang`
+2. Run engine and test Crazyhouse play
+3. Explore NNUE — is there a Crazyhouse-specific network?
+4. Look at search parameter tuning for Crazyhouse
