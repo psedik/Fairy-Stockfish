@@ -55,13 +55,21 @@ Task(subagent_type="general-purpose", model="haiku", prompt="...")
 - Focus on Crazyhouse strength first
 
 ## Current State
-- CLAUDE.md and notes/architecture.md added and pushed to psedik/Fairy-Stockfish
+- Engine buildnutý a funkčný: `src/stockfish` (ARCH=x86-64-modern, COMP=clang)
+- Beží BEZ NNUE siete (`NNUE_EMBEDDING_OFF`, `EvalFile = <empty>`) — klasické hodnotenie
+- Engine je deterministický pri default Skill Level 20 — bez opening book hrá vždy rovnako
 - Analyzed variant dispatch — Crazyhouse is NOT isolated, runtime flag-based
 - Decided NOT to separate Crazyhouse (2-5% gain, too much effort)
 - Real bottlenecks: NNUE pockets, drop move generation, larger search tree
+- `play.py` — jednoduchý interaktívny UCI wrapper na hranie partie
 
-## Next Steps
-1. Build from source: `cd src && make build ARCH=x86-64-modern COMP=clang`
-2. Run engine and test Crazyhouse play
-3. Explore NNUE — is there a Crazyhouse-specific network?
-4. Look at search parameter tuning for Crazyhouse
+## Notes
+- `notes/quickstart.md` — ako skompilovať, spustiť, testovať
+- `notes/architecture.md` — variant dispatch, Crazyhouse internals
+- `notes/ideas.md` — čo sa dá robiť (GUI, engine-vs-engine, NNUE, tuning...)
+- `notes/tasks.md` — konkrétne tasky pripravené na implementáciu
+
+## Biggest Opportunity
+Načítať existujúcu Crazyhouse NNUE sieť → potenciálne 100-200 Elo gain za minimálnu prácu.
+Preskúmať či existuje `.nnue` súbor trénovaný na Crazyhouse.
+
